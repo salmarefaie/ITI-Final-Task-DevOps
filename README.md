@@ -67,3 +67,35 @@
     sudo systemctl start docker
     sudo systemctl status docker
  ```
+
+## Configuration using Ansible
+- another way to install kubectl, aws cli on bastion host machine and enable docker on node worker.
+- make config file in ~/.ssh/config
+
+```bash      
+   Host bastion-host
+        hostname 3.86.85.134
+        user ubuntu
+        port 22
+        identityfile /home/salma/ITI-Devops/final-project/ansible/project.pem
+ ```
+ - To run ansible code to machines
+ 
+ ```bash
+    cd ansible
+    ansible-galaxy init roles/docker
+    ansible-galaxy init roles/aws-cli
+    ansible-galaxy init roles/kubectl
+    ansible-playbook playbook.yaml -i inventory.txt
+ ```
+ 
+ ## Connect to EKS cluster
+ - To connect with EKS using ec2 machine, we will configure aws and then connect to the cluster.
+ 
+ ```bash
+    aws configure
+    aws eks --region us-east-1 update-kubeconfig --name cluster
+    kubectl get nodes or kubectl get services
+ ```
+ 
+ 
