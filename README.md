@@ -128,4 +128,35 @@
  
   ![Screenshot from 2023-02-27 03-17-32](https://user-images.githubusercontent.com/76884936/221494787-684c0e42-cb49-4fa5-96d1-04122f0dbeee.png)
 
+## Deploy Python App
+- we will deploy python app with redis on eks cluster using CI/CD jenkins pipeline.
+- In CI phase, python app image is built and pushed to docker hub.
+- In CD phase, python app with redis is deployed.
+
+  ![Screenshot from 2023-02-27 09-07-08](https://user-images.githubusercontent.com/76884936/221496885-5e6e73e7-121c-4541-b0b8-0ae72703d3e4.png)
+
+## Steps for jenkins pipeline
+- clone repo which have application, Docker file to build image and deployment files to deploy application.
+
+```bash
+   git clone https://github.com/salmarefaie/python-app-CI-CD.git
+```
+
+- make docker credentials 
+
+![Screenshot from 2023-02-27 03-18-34](https://user-images.githubusercontent.com/76884936/221498361-e8aac26d-f8f4-440f-b2d8-3e6dad76d790.png)
+
+- make pipeline with code which exists in repo (jenkinsfile)
+
+ ![Screenshot from 2023-02-27 03-32-34](https://user-images.githubusercontent.com/76884936/221499118-5f8e7557-fcd3-4606-b45a-6f353d192515.png)
+ 
+ ![Screenshot from 2023-02-27 03-37-26](https://user-images.githubusercontent.com/76884936/221499269-73a24f1d-73fc-4a56-95db-71a4381f1b40.png)
+ 
+- output from CI phase 
+
+![Screenshot from 2023-02-27 09-23-06](https://user-images.githubusercontent.com/76884936/221499761-e28860f5-80b0-4a2f-a5ae-7d20c1089b4f.png)
+
+- output from CD phase 
+
+![Screenshot from 2023-02-27 03-37-29](https://user-images.githubusercontent.com/76884936/221499887-db1d825d-46ec-47ae-9d88-abd98ab816cc.png)
 
