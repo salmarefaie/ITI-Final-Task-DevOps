@@ -98,4 +98,34 @@
     kubectl get nodes or kubectl get services
  ```
  
+ ## Deploy Jenkins on EKS Cluster
+ - transfare yaml files from our machine to bastion host machine.
  
+ ```bash
+    scp -i project.pem deployment.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem service.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem pv.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem pvc.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem service-account.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem role.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem role-binding.yaml ubuntu@3.86.85.134:/home/ubuntu
+    scp -i project.pem namespace.yaml ubuntu@3.86.85.134:/home/ubuntu
+ ```
+ - apply yaml files to deploy jenkins.
+ 
+ ```bash
+    kubectl apply -f namespace.yaml
+    kubectl apply -f pv.yaml
+    kubectl apply -f pvc.yaml
+    kubectl apply -f service-account.yaml
+    kubectl apply -f role.yaml
+    kubectl apply -f role-binding.yaml
+    kubectl apply -f deployment.yaml
+    kubectl apply -f service.yaml
+    kubectl get all -n jenkins
+    kubectl logs pod/jenkins-78679c566d-pc8lr -n jenkins
+ ```
+ 
+  ![Screenshot from 2023-02-27 03-17-32](https://user-images.githubusercontent.com/76884936/221494787-684c0e42-cb49-4fa5-96d1-04122f0dbeee.png)
+
+
