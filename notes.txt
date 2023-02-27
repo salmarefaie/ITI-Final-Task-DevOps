@@ -1,0 +1,54 @@
+run cluster in eks :
+    - aws configure
+    - aws eks --region us-east-1 update-kubeconfig --name cluster
+    - kubectl get nodes or kubectl get services
+
+
+jenkins deplyment:
+    1. kubectl apply -f namespace.yaml
+    2. kubectl apply -f pv.yaml
+    3. kubectl apply -f pvc.yaml
+    4. kubectl apply -f service-account.yaml
+    5. kubectl apply -f role.yaml
+    6. kubectl apply -f role-binding.yaml
+    7. kubectl apply -f deployment.yaml
+    8. kubectl apply -f service.yaml
+    9. kubectl get all -n jenkins
+    10. kubectl logs pod/jenkins-78679c566d-pc8lr -n jenkins
+
+
+
+basion host:
+    1. chmod 400 project.pem
+    2. scp -i project.pem project.pem ubuntu@3.82.233.187:/home/ubuntu
+    3. ssh -i "project.pem" ubuntu@3.82.233.187
+    4. ssh -i "project.pem" ec2-user@10.0.1.9
+
+    5. scp -i project.pem install-packages.sh ubuntu@54.159.159.159:/home/ubuntu
+    6. sh install-packages.sh
+
+
+
+enable docker on node worker:
+    1. sudo systemctl start docker
+    2. sudo systemctl status docker
+
+
+
+jenkins docker image:
+    1. docker build -t jenkins-image-on-pod .
+    2. docker tag jenkins-image-on-pod salmarefaie29/jenkins-image-on-pod
+    3. docker images
+    4. docker push salmarefaie29/jenkins-image-on-pod
+
+
+
+ansible commands:
+    -  ansible-galaxy init roles/docker
+    -  ansible-galaxy init roles/aws-cli
+    -  ansible-galaxy init roles/kubectl
+    -  ansible-playbook playbook.yaml -i inventory.txt
+
+
+
+

@@ -1,0 +1,14 @@
+- name: install aws cli    
+  hosts: bastion-host             
+  become: true                         
+  roles:
+    - role: roles/aws-cli
+    - role: roles/kubectl
+
+
+- name: install docker  
+  hosts: worker-node         
+  become: true                         
+  roles:
+    - role: roles/docker
+  
